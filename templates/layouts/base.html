@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Njeke">
+    <meta name="description" content="The Sweet Tooth Cafe: Kenyan Candy Store">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% include 'cdn/css_bootstrap5_cdn.html' %}
+    <link rel="icon" href="{% static 'images/candies.png' %}">
+    <title>STC - {% block title %}
+    	
+    {% endblock %}</title>
+</head>
+<body class="">
+
+<!-- Header -->
+
+
+{% block content %}
+
+{% endblock %}
+
+<!-- Footer -->
+
+{% include 'cdn/js_bootstrap5_cdn.html' %}
+
+</body>
+</html>

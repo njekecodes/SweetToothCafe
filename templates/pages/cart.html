@@ -1,0 +1,214 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Cart {% endblock %}
+
+{% block content %}
+    {% include 'partials/navbar.html' %}
+    <style>
+        .btn-outline {
+            border-color: #D33665;
+            color: #D33665;
+        }
+        .btn-outline:hover {
+            background-color: #D33665;
+            color: white;
+        }
+        .facons i, table i {
+            color: #D33665 !important;
+        }
+
+        .facons i:hover, table i:hover {
+            color: black !important;
+        }
+
+        .text-muted {
+            font-size: .8em;
+        }
+
+        .texts {
+            font-size: .9em;
+            color: black;
+        }
+
+        .texts1 {
+            font-size: .7em;
+        }
+         td, tr {
+            border-style: none;
+        }
+         table {
+             min-width: 500px;
+             max-width: 600px;
+
+         }
+
+    </style>
+    <section class="p-2 my-5 w-100">
+        <!-- Cart Details -->
+        <div class="container w-75 shadow-lg p-3" style="max-width: 600px">
+            <div class="row">
+                <h2 class="text-center p-1">My Cart</h2>
+            </div>
+            <div class="row">
+                <div class="font-monospace text-center text-black p-2 container w-auto d-flex flex-row justify-content-evenly facons">
+                    <div class="p-3 d-flex flex-column justify-content-evenly">
+                        <i class="fa-solid fa-hashtag mb-1"></i>
+                        <span class="texts1 my-2 text-muted mb-1">Cart Items</span>
+                        <span class="texts mt-1">4</span>
+                    </div>
+                    <div class="p-3 d-flex flex-column justify-content-evenly">
+                        <i class="fa-solid fa-truck mb-1"></i>
+                        <span class="texts1 my-2 text-muted mb-1">Delivery Fee</span>
+                        <span class="texts mt-1">Ksh 200</span>
+                    </div>
+                    <div class="p-3 d-flex flex-column justify-content-evenly">
+                        <i class="fa-solid fa-money-bill-wave mb-1"></i>
+                        <span class="texts1 my-2 text-muted mb-1">Total</span>
+                        <span class="texts mt-1">Ksh. 1000</span>
+                    </div>
+                </div>
+                <!-- Cart Buttons -->
+                <div class="container w-auto p-2 d-flex flex-row justify-content-around py-2 mb-3">
+                    <button class="btn btn-outline">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w-auto p-2 my-5">
+
+
+        <!-- Cart Items -->
+        <table class="table table-responsive shadow-lg w-75 mx-auto">
+            <thead class="p-5 w-auto text-center mb-5 table-dark">
+                <td>Item Image</td>
+                <td>Description</td>
+                <td>Total</td>
+                <td></td>
+            </thead>
+
+            <tbody class="p-5">
+            <!-- Loop Through Wishlist Table and populate data  -->
+            <tr class="">
+                <td>
+                    <div class="col col-6 w-auto d-flex flex-column justify-content-evenly"
+                         style="max-width: 100px; max-height: 100px">
+                        <img src="{% static 'images/candies.png' %}" alt="Candy Image" class="img-fluid">
+                    </div>
+                </td>
+                <td>
+                    <div class="col text-center w-auto d-flex flex-column justify-content-evenly"
+                         style="min-width: 200px">
+                        <p class="" style="font-size: 0.9rem">Chocolate</p>
+                        <p class="text-muted fst-italic" style="font-size: 0.8rem">Cadbury</p>
+                        <p style="font-size: 0.7rem">Ksh. 400</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex flex-column justify-content-evenly">
+                        <div>
+                            <p class="text-center mb-0" style="font-size: 1.1em">Ksh. 400</p>
+                        </div>
+
+                        <div class="d-flex flex-row justify-content-around">
+                            <button class="border-0 bg-white">
+                                <i class="fa-solid fa-minus-square" style="font-size: .9em"></i>
+                            </button>
+
+                            <span class="" style="font-size: 1.1em">1</span>
+
+                            <button class=" border-0 bg-white">
+                                <i class="fa-solid fa-plus-square" style="font-size: .9em"></i>
+                            </button>
+                        </div>
+
+                        <div class="d-flex flex-row justify-content-around">
+                            <i class="fa-heart fa-solid p-3" title="Add to Wishlist"></i>
+                            <i class="fa-remove fa-solid p-3" title="Remove from Cart"></i>
+                        </div>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Recently Viewed -->
+    <section class="my-5 w-100  p-2">
+
+        <div class="container px-5 py-3 shadow-lg mx-auto" style="width: 95%">
+            <div class="row">
+                <h2 class="text-center p-3 mt-3">Recently Viewed</h2>
+            </div>
+            <div class="row w-100 d-flex flex-row justify-content-evenly mx-auto">
+                <div class="col bg-light px-3 py-3 mx-3 my-3" style="max-height: fit-content; max-width: 250px">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="facons d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="p-3 text-decoration-none">
+                                <i title="View item" class="fa-solid fa-eye text-black"></i></a>
+                            <a href="#" class="p-3 text-decoration-none">
+                                <i title="Add to cart" class="fa-solid fa-cart-plus text-black"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col bg-light px-3 py-3 mx-3 my-3" style="max-height: fit-content; max-width: 250px">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="facons d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="p-3 text-decoration-none">
+                                <i title="View item" class="fa-solid fa-eye text-black"></i></a>
+                            <a href="#" class="p-3 text-decoration-none">
+                                <i title="Add to cart" class="fa-solid fa-cart-plus text-black"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col bg-light px-3 py-3 mx-3 my-3" style="max-height: fit-content; max-width: 250px">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="facons d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="p-3 text-decoration-none">
+                                <i title="View item" class="fa-solid fa-eye text-black"></i></a>
+                            <a href="#" class="p-3 text-decoration-none">
+                                <i title="Add to cart" class="fa-solid fa-cart-plus text-black"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col bg-light px-3 py-3 mx-3 my-3" style="max-height: fit-content; max-width: 250px">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class=" facons d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="p-3 text-decoration-none">
+                                <i title="View item" class="fa-solid fa-eye text-black"></i>
+                            </a>
+                            <a href="#" class="p-3 text-decoration-none">
+                                <i title="Add to cart" class="fa-solid fa-cart-plus text-black"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    {% include 'partials/footer.html' %}
+{% endblock %}
+

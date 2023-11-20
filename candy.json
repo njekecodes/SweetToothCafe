@@ -1,0 +1,47 @@
+[
+	{
+		"name": "White Chocolate with Biscuit",
+		"brand": "Cadbury",
+		"desc": "Sweet Chocolatey Goodness",
+		"cost": 150,
+		"price": 300,
+		"category": "Chocolate",
+		"category_type": "White"
+	},
+	{
+		"name": "Milk Chocolate",
+		"brand": "Lindt",
+		"desc": "Sweet Chocolatey Goodness",
+		"cost": 150,
+		"price": 300,
+		"category": "Chocolate",
+		"category_type": "Milk"
+	},
+	{
+		"name": "Dark Fudge Chocolate",
+		"brand": "Guylian",
+		"desc": "Sweet Chocolatey Goodness",
+		"cost": 150,
+		"price": 300,
+		"category": "Chocolate",
+		"category_type": "Dark"
+	},
+	{
+		"name": "Fruit and Nut Milk Chocolate",
+		"brand": "Guylian",
+		"desc": "Sweet Chocolatey Goodness",
+		"cost": 150,
+		"price": 300,
+		"category": "Chocolate",
+		"category_type": "Milk"
+	},
+	{
+		"name": "White Chocolate",
+		"brand": "Lindt",
+		"desc": "Sweet Chocolatey Goodness",
+		"cost": 150,
+		"price": 300,
+		"category": "Chocolate",
+		"category_type": "White"
+	}
+]
