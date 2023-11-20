@@ -1,4 +1,2 @@
-The Sweet Tooth Cafe is an ecommerce store that sells candy in Kenya
-
 # SweetToothCafe
-
+The Sweet Tooth Cafe is an ecommerce store that sells candy in Kenya
