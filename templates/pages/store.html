@@ -8,48 +8,60 @@
 {% block content %}
     {% include 'partials/navbar.html' %}
 
+    <style>
+        .card {
+            max-width: 300px;
+            max-height: 300px;
+
+        }
+    </style>
+
+    <!-- Shop all candy -->
+
+
     <!-- Shop by Category section -->
-    <section class="w-100 my-5 d-flex flex-column justify-content-evenly">
-        <!-- Shop by: Title -->
-        <div class="row mb-3">
-            <h2 class="text-center ">Shop by Category</h2>
-        </div>
-        <!-- Category cards -->
-        <div class="row d-flex flex-row justify-content-evenly">
-            <div class="card p-3 w-50 d-flex flex-row justify-content-evenly" style="max-width: 300px; max-height: 300px;">
-                <div class="card-img-top d-flex justify-content-evenly p-2">
-                    <img src="{% static 'images/candies.png' %}" alt="Image" class="img-fluid">
-                </div>
-                <div class="card-body card-img-overlay d-flex flex-column justify-content-evenly" style="background-color: rgba(0,0,0,.5)">
-                    <div class="text-center card-title row d-flex justify-content-evenly">
-                        <h1 class="text-white">Chocolate</h1>
-                    </div>
-                    <div class="card-text row d-flex justify-content-evenly text-center">
-                        <a href="" class="card-link text-decoration-none">
-                            <span class="btn btn-outline-light">Explore</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card p-3 w-50 d-flex flex-row justify-content-evenly" style="max-width: 300px; max-height: 300px;">
-            <div class="card-img-top d-flex justify-content-evenly p-2">
-                <img src="{% static 'images/candies.png' %}" alt="Image" class="img-fluid">
-            </div>
-            <div class="p-2 card-body card-img-overlay d-flex flex-column justify-content-evenly" style="background-color: rgba(0,0,0,.5)">
-                <div class="text-center card-title row d-flex justify-content-evenly">
-                    <h1 class="text-white">Chocolate</h1>
-                </div>
-                <div class="card-text row d-flex justify-content-evenly text-center">
-                    <a href="" class="card-link text-decoration-none">
-                        <span class="btn btn-outline-light">Explore</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        </div>
-
-    </section>
+{#    <section class="container w-100 my-5 d-flex flex-column justify-content-evenly">#}
+{#        <!-- Shop by: Title -->#}
+{#        <div class="row mb-3">#}
+{#            <h2 class="text-center ">Shop by Category</h2>#}
+{#        </div>#}
+{##}
+{#        <!-- Category cards -->#}
+{#        <div class="row d-flex flex-row justify-content-evenly">#}
+{#            <div class="card p-3 w-50 d-flex flex-row justify-content-evenly" style="max-width: 300px; max-height: 300px;">#}
+{#                <div class="card-img-top d-flex justify-content-evenly p-2">#}
+{#                    <img src="{% static 'images/candies.png' %}" alt="Image" class="img-fluid">#}
+{#                </div>#}
+{#                <div class="card-body card-img-overlay d-flex flex-column justify-content-evenly" style="background-color: rgba(0,0,0,.5)">#}
+{#                    <div class="text-center card-title row d-flex justify-content-evenly">#}
+{#                        <h1 class="text-white">Chocolate</h1>#}
+{#                    </div>#}
+{#                    <div class="card-text row d-flex justify-content-evenly text-center">#}
+{#                        <a href="" class="card-link text-decoration-none">#}
+{#                            <span class="btn btn-outline-light">Explore</span>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="card p-3 w-50 d-flex flex-row justify-content-evenly" style="max-width: 300px; max-height: 300px;">#}
+{#            <div class="card-img-top d-flex justify-content-evenly p-2">#}
+{#                <img src="{% static 'images/candies.png' %}" alt="Image" class="img-fluid">#}
+{#            </div>#}
+{#            <div class="p-2 card-body card-img-overlay d-flex flex-column justify-content-evenly" style="background-color: rgba(0,0,0,.5)">#}
+{#                <div class="text-center card-title row d-flex justify-content-evenly">#}
+{#                    <h1 class="text-white">Chocolate</h1>#}
+{#                </div>#}
+{#                <div class="card-text row d-flex justify-content-evenly text-center">#}
+{#                    <a href="" class="card-link text-decoration-none">#}
+{#                        <span class="btn btn-outline-light">Explore</span>#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        </div>#}
+{##}
+{#    </section>#}
 
     <hr class="w-50 mx-auto my-5">
     <!-- Shop by -->

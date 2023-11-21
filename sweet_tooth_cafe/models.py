@@ -66,21 +66,27 @@ class Discount(models.Model):
 
 
 class Candy(models.Model):
-    name = models.CharField(max_length=100)
+    CHOICES = (
+        ('Chocolate',  'Chocolate'),
+        ('Sweets', 'Sweets'),
+        ('Gum', 'Gum'),
+        ('Other', 'Other'),
+    )
     brand = models.CharField(max_length=100)
-    desc = models.CharField(max_length=500)
-    category = models.CharField(max_length=50, null=True, default="Chocolate")
-    category_type = models.CharField(max_length=50, null=True, default="Milk")
-    #inventory_id = models.ForeignKey(Inventory, on_delete=models.CASCADE)
-    cost = models.IntegerField()
-    price = models.IntegerField()
+    category = models.CharField(max_length=50, default='')
+    flavour = models.CharField(max_length=50, null=True, default='')
+    quantity = models.IntegerField(null=True, default=0)
+    weight = models.FloatField(null=True, default=0)
+    in_inventory = models.IntegerField(default=0, null=True)
+    cost = models.IntegerField(null=True, default=0)
+    price = models.IntegerField(null=True, default=0)
+    rating = models.IntegerField( default=0)
     image = models.FileField(upload_to='candies', default='candies/sweets.png')
-    #discount_id = models.ForeignKey(Discount, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.brand} {self.name}'
+        return f'{self.brand} {self.category} {self.flavour}'
 
 # pip install Pillow
 # installs library that supports image uploads

@@ -16,12 +16,14 @@
         .carousel-caption {
             bottom: 40%
         }
-        .carousel img{
+
+        .carousel img {
             max-height: 500px;
             object-fit: cover;
         }
+
         .carousel-caption {
-            background-color: rgba(255,255,255, 0.8);
+            background-color: rgba(255, 255, 255, 0.8);
         }
     </style>
     {% include 'partials/navbar.html' %}
@@ -76,16 +78,21 @@
 
     <!-- Signin  and Signup Links -->
     <section class="w-100 my-5 h-auto">
-        <div class="container d-flex flex-column justify-content-evenly shadow-lg p-5">
-            <div class="row m-3">
+        <div class="container d-flex flex-column justify-content-center shadow-lg p-2 w-50">
+            <!-- Section Title -->
+            <div class="row mt-3 mx-auto">
                 <h1 class="text-center">Join Today</h1>
+                <p class="text-center text-muted">4600 Members already joined!</p>
             </div>
-            <div class="signup-login row  d-flex flex-row justify-content-evenly">
-                <a href="{% url 'login' %}" class="col w-25 text-decoration-none m-2 d-flex flex-column justify-content-evenly">
+            <!-- Signin and Login links -->
+            <div class="signup-login row  d-flex flex-row justify-content-center">
+                <a href="{% url 'login' %}"
+                   class="col-sm-2 mw-100 text-decoration-none d-flex flex-column justify-content-evenly">
                     <i class="p-2 fa-solid fa-right-to-bracket mx-auto w-auto fs-1 text-black"></i>
                     <span class="text-center p-2 text-black" style="color: black">Login</span>
                 </a>
-                <a href="{% url 'signup' %}" class="col w-25 text-decoration-none m-2 d-flex flex-column justify-content-evenly">
+                <a href="{% url 'signup' %}"
+                   class="col-sm-2 mw-100 text-decoration-none d-flex flex-column justify-content-evenly">
                     <i class="p-2 fa-solid fa-user-plus mx-auto w-auto fs-1"></i>
                     <span class="text-center p-2" style="color: black">Signup</span>
                 </a>
@@ -94,11 +101,110 @@
         </div>
     </section>
 
+    <!-- Latest Confectionery -->
+    <section class="w-100 my-5">
+        <div class="sweet-deals container px-3 py-3 shadow-lg">
+            <!-- Section Title -->
+            <div class="w-auto mx-auto">
+                <h2 class="text-center my-3 fw-bold">Sweet Deals</h2>
+            </div>
+
+            <div class="mx-auto d-flex flex-row justify-content-start w-100 overflow-scroll">
+                <!-- Item 1 -->
+                <div class="bg-light px-5 py-3 my-3 w-25" style="max-height: fit-content;max-width: fit-content">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye text-black"></i></a>
+                            <a href="#" class="text-decoration-none"><i
+                                    class="fa-solid fa-cart-plus text-black"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="bg-light px-5 py-3 mx-3 my-3 w-25 mh-100 mw-100">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
+                            <a href="#" class="text-decoration-none"><i
+                                    class="fa-solid fa-cart-plus text-black"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="bg-light px-5 py-3 mx-3 my-3 w-25 mh-100 mw-100">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye text-black"></i></a>
+                            <a href="#" class="text-decoration-none"><i
+                                    class="fa-solid fa-cart-plus text-black"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="bg-light px-5 py-3 mx-3 my-3 w-25 mw-100 mw-100">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye text-black"></i></a>
+                            <a href="#" class="text-decoration-none"><i
+                                    class="fa-solid fa-cart-plus text-black"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="bg-light px-5 py-3 mx-3 my-3 w-25 mh-100 mw-100">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye text-black"></i></a>
+                            <a href="#" class="text-decoration-none"><i
+                                    class="fa-solid fa-cart-plus text-black"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="bg-light px-5 py-3 mx-3 my-3 w-25 mw-100 mw-100">
+                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
+                    <div class="my-3">
+                        <p class="text-center my-0">Sweets</p>
+                        <p class="text-center text-muted my-0">Monty's</p>
+                        <p class="text-center my-3">Ksh. 240</p>
+                        <div class="d-flex justify-content-evenly mt-1 my-4">
+                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye text-black"></i></a>
+                            <a href="#" class="text-decoration-none"><i
+                                    class="fa-solid fa-cart-plus text-black"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
     <!-- More information: Delivery, Candies and Payment -->
     <section class="border-2 bg-light w-100 my-5">
-        <div class="container shadow-lg my-3" style="width: 90%">
+        <div class="container bg-white my-3" style="width: 90%">
             <div class="details row p-5 d-flex flex-row justify-content-evenly">
-                <div class="col text-center m-2 d-flex flex-column justify-content-evenly">
+                <!-- Delivery info -->
+                <div class="shadow-lg col text-center m-3 p-5 d-flex flex-column justify-content-evenly">
 
                     <div class="row d-flex justify-content-evenly">
                         <i class="fa-truck fa-solid fs-1 m-4"></i>
@@ -109,7 +215,8 @@
                     </div>
 
                 </div>
-                <div class="col text-center m-2 d-flex flex-column justify-content-evenly">
+                <!-- Candy info -->
+                <div class="shadow-lg col text-center m-3 p-5 d-flex flex-column justify-content-evenly">
 
                     <div class="row d-flex justify-content-evenly">
                         <i class="fa-candy-cane fa-solid fs-1 m-4"></i>
@@ -120,7 +227,8 @@
                     </div>
 
                 </div>
-                <div class="col text-center m-2 d-flex flex-column justify-content-evenly">
+                <!-- Payment info -->
+                <div class="shadow-lg col text-center m-3 p-5 d-flex flex-column justify-content-evenly">
 
                     <div class="row d-flex justify-content-evenly">
                         <i class="fa-money-bill fa-solid fs-1 m-4"></i>
@@ -135,72 +243,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Latest Confectionery -->
-    <section class="w-100 my-5">
-        <div class="sweet-deals container px-3 py-3 shadow-lg">
-            <div class="row">
-                <h3 class="text-center my-3">Sweet Deals</h3>
-            </div>
-            <div class="row d-flex justify-content-evenly">
-                <div class="col bg-light px-3 py-3 mx-3 my-3" style="max-height: fit-content;">
-                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
-                    <div class="my-3">
-                        <p class="text-center my-0">Sweets</p>
-                        <p class="text-center text-muted my-0">Monty's</p>
-                        <p class="text-center my-3">Ksh. 240</p>
-                        <div class="d-flex justify-content-evenly mt-1 my-4">
-                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye text-black"></i></a>
-                            <a href="#" class="text-decoration-none"><i
-                                    class="fa-solid fa-cart-plus text-black"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col bg-light px-3 py-3 mx-3 my-3" style="max-height: fit-content; ">
-                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
-                    <div class="my-3">
-                        <p class="text-center my-0">Sweets</p>
-                        <p class="text-center text-muted my-0">Monty's</p>
-                        <p class="text-center my-3">Ksh. 240</p>
-                        <div class="d-flex justify-content-evenly mt-1 my-4">
-                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye"></i></a>
-                            <a href="#" class="text-decoration-none"><i
-                                    class="fa-solid fa-cart-plus text-black"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col bg-light px-3 py-3 mx-3 my-3" style="max-height: fit-content; ">
-                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
-                    <div class="my-3">
-                        <p class="text-center my-0">Sweets</p>
-                        <p class="text-center text-muted my-0">Monty's</p>
-                        <p class="text-center my-3">Ksh. 240</p>
-                        <div class="d-flex justify-content-evenly mt-1 my-4">
-                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye text-black"></i></a>
-                            <a href="#" class="text-decoration-none"><i
-                                    class="fa-solid fa-cart-plus text-black"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col bg-light px-3 py-3 mx-3 my-3" style="max-height: fit-content; ">
-                    <img src="{% static 'images/candies.png' %}" alt="" class="img-fluid">
-                    <div class="my-3">
-                        <p class="text-center my-0">Sweets</p>
-                        <p class="text-center text-muted my-0">Monty's</p>
-                        <p class="text-center my-3">Ksh. 240</p>
-                        <div class="d-flex justify-content-evenly mt-1 my-4">
-                            <a href="#" class="text-decoration-none"><i class="fa-solid fa-eye text-black"></i></a>
-                            <a href="#" class="text-decoration-none"><i
-                                    class="fa-solid fa-cart-plus text-black"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-
 
     {% include 'partials/footer.html' %}
 {% endblock %}

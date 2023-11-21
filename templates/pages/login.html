@@ -7,7 +7,7 @@
 {% block content %}
     <style>
         body {
-            background-image: url("/static/images/yes-and-studio-XVYz_QeiEBw-unsplash.jpg");
+            background-image: url("media/pages/yes-and-studio-XVYz_QeiEBw-unsplash.jpg");
             -webkit-background-size: contain;
             -moz-background-size: cover;
             background-size: cover;
@@ -32,18 +32,27 @@
         <!-- Sign in Card -->
         <div class="container card shadow-lg bg-white p-5 m-auto mt-5 w-75 h-auto" style="max-width: 500px">
 
+            <!-- logo and titles -->
             <div class="row">
                 <div class="row card-img w-100 mx-auto justify-content-evenly pb-2">
                     <img src="{% static 'images/sweets.png' %}" alt="" class="w-auto img-fluid "
                          style="max-width: 75px; max-height: 75px;">
                 </div>
+                <!-- Sweet Tooth Cafe Title -->
                 <div class="row w-100 mx-auto">
-                    <span class="ms-2 fs-4 text-center">Sweet Tooth Cafe</span>
+                    <span class="ms-2 fs-2 text-center fw-bold">Sweet Tooth Cafe</span>
                 </div>
+                <!-- Login Title -->
                 <div class="card-title text-center mb-1">
-                    <span class="fs-5">Log in</span>
+                    <span class="fs-5 mt-2">Log in</span>
                 </div>
-
+                <!-- Login Instead link -->
+                <div class="row w-100 mx-auto mt-2 mb-2">
+                    <div class="col d-flex w-50 justify-content-evenly">
+                        <a href="{% url 'signup' %}" class="text-decoration-none text-muted text-center"
+                           style="font-size: .8em">Signup Instead?</a>
+                    </div>
+                </div>
                 <!-- Login with third parties -->
                 <div class="row justify-content-evenly w-auto mx-auto p-3">
                     <div class="col justify-content-evenly">
@@ -66,8 +75,8 @@
             </div>
 
             <!-- Login Form -->
-            <div class="row w-100 mx-auto">
-                <form action="" method="post" class="w-100 px-5 py-1" enctype="multipart/form-data">
+            <div class="row w-100 mx-auto" style="max-width: 500px;">
+                <form action="" method="post" class="w-100 px-3 py-1">
                     {% csrf_token %}
                     {{ login_form | crispy }}
                     <div class="w-50 mx-auto pt-3">
@@ -77,6 +86,7 @@
                 </form>
 
             </div>
+            <!-- Link to sign up instead -->
 
             <!-- Link back to home page -->
             <div class="row w-auto mx-auto mt-3">

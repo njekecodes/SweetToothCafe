@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -6,7 +7,7 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
 
 from sweet_tooth_cafe.forms import LoginForm, SignupForm
-from sweet_tooth_cafe.models import Customer
+from sweet_tooth_cafe.models import Customer, Candy
 
 
 # Create your views here.
@@ -15,8 +16,6 @@ def home(request):
     return render(request, 'pages/landing_page.html')
 
 
-def store(request):
-    return render(request, 'pages/store.html')
 
 
 def blog(request):
@@ -33,7 +32,11 @@ def cart(request):
 
 
 def all_candy(request):
-    return render(request, 'pages/all_candy.html')
+    candy_data = Candy.objects.all().order_by('flavour')
+    paginator = Paginator(candy_data, 20)
+    page_number = request.GET.get('page')
+    candy_data = paginator.get_page(page_number)
+    return render(request, 'pages/all_candy.html', {'candies': candy_data})
 
 
 def about(request):
@@ -54,31 +57,38 @@ def categories(request):
 
 
 def login(request):
-    @csrf_protect
-    def customer_login(request):
-        csrf_context = RequestContext(request)
-        return render(request, 'pages/login.html', csrf_context)
+    if request.method == 'GET':
+        login_form = LoginForm()
+        return render(request, 'pages/login.html', {'login_form': login_form})
 
-    if request.method == 'POST':
+
+    elif request.method == 'POST':
         # Load the form with data from your request
-        form = LoginForm(request.POST)
+        login_form = LoginForm(request.POST)
 
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'You have signed up successfully!')
-            return redirect('customer_home')
+        if login_form.is_valid():
+            email = login_form.cleaned_data['email']
+            password = login_form.cleaned_data['password']
+            user = authenticate(request, username=email, password=password)
 
-    else:
-        form = LoginForm()
+            if user:
+                login(request, user)
+                messages.success(request, 'Sign in was successful!')
+                return redirect('home')
 
-    return render(request, 'pages/login.html', {'login_form': form})
+        messages.error(request, 'Invalid username or password!')
+        return render(request, 'pages/login.html', {'login_form': login_form})
+
 
 def customer_home(request, customer_id):
-    data = Customer.objects.get(pk=customer_id)
-    paginator = Paginator(data, 15)
-    page_number = request.GET.get('page')
-    data = paginator.get_page(page_number)
-    return render(request, 'pages/customer_homepage.html', {'customer': data})
+    customer = Customer.objects.get(pk=customer_id)
+
+    return render(request, 'pages/customer_homepage.html', {'customer': customer})
+
+
+def store(request):
+    candy_data = Candy.objects.all()
+    return render(request, 'pages/store.html', {'candies': candy_data})
 
 
 def signup(request):
@@ -99,6 +109,7 @@ def signup(request):
         form = SignupForm()
 
     return render(request, 'pages/signup.html', {'signup_form': form})
+
 
 @login_required()
 def settings(request):

@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layouts/base.html' %}
+{% load humanize %}
 
-</body>
-</html>
+{% block title %}
+	All Candy
+{% endblock %}
+
+{% block content %}
+	{% include 'partials/navbar.html' %}
+
+    <section class= "w-100 my-5 h-auto">
+        <div class="container w-auto mx-auto">
+            <div class="row w-100 d-flex flex-row justify-content-evenly">
+
+                {% for candy in candies %}
+                    <div class="card p-3 m-3 w-25 h-auto bg-white shadow-lg" style="min-width: 250px">
+                        <div class="card-img">
+                            <img src="{{ candy.image.url }}" alt="Product Image" class="img-fluid w-100 h-auto">
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="card-title w-100 h-auto">
+                                <h6>{{ candy.flavour }}</h6>
+                            </div>
+                            <div class="card-text w-auto h-auto">
+                                <p class="text-muted" style="font-size: .8em">{{ candy.brand | capfirst }}</p>
+                                <p class="fw-bold" style='font-size: 1.1em'>Ksh. {{ candy.price | intcomma }}</p>
+                            </div>
+                            <div class="card-link d-flex flex-row justify-content-evenly mt-2" style="font-size: .9em">
+                                <a href="" class="" title="View Product">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="" class="" title="Add to Cart">
+                                    <i class="fa-solid fa-shopping-cart"></i>
+                                </a>
+                                <a href="" class="" title="Add to Wish List">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+    {% include 'partials/footer.html' %}
+{% endblock %}
