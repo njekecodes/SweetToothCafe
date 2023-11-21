@@ -38,6 +38,12 @@
                     aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                    aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                    aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"
+                    aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -45,27 +51,26 @@
                      alt="Candy Image">
                 <div class=" p-5 carousel-caption w-auto h-auto mx-auto my-auto">
                     <!-- Section Title -->
-                    <div class="row mt-3 mx-auto">
+                    <div class="row mt-3 mx-auto mt-auto">
                         <h1 class="text-center">Join Today</h1>
-                        <p class="text-center text-muted">4600 Members already joined!</p>
                     </div>
                     <!-- Signin and Login links -->
-                    <div class="signup-login row my-auto d-flex flex-row justify-content-center">
+                    <div class="signup-login row my-auto d-flex flex-row justify-content-evenly">
                         <a href="{% url 'login' %}"
-                           class="col-sm-2 mw-100 text-decoration-none d-flex flex-column justify-content-evenly">
-                            <i class="p-2 fa-solid fa-right-to-bracket mx-auto w-auto fs-1 text-black"></i>
+                           class="col mw-100 text-decoration-none d-flex flex-row justify-content-evenly">
+                            <i class="p-2 fa-solid fa-right-to-bracket mx-0 w-auto fs-1 text-black"></i>
                             <span class="text-center p-2 text-black" style="color: black">Login</span>
                         </a>
                         <a href="{% url 'signup' %}"
-                           class="col-sm-2 mw-100 text-decoration-none d-flex flex-column justify-content-evenly">
-                            <i class="p-2 fa-solid fa-user-plus mx-auto w-auto fs-1"></i>
+                           class="col mw-100 text-decoration-none d-flex flex-row justify-content-evenly">
                             <span class="text-center p-2" style="color: black">Signup</span>
+                            <i class="p-2 fa-solid fa-user-plus mx-0 w-auto fs-1"></i>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{% static 'images/rachel-kelli-IwhYst0ZX_8-unsplash.jpg' %}" class="d-block w-100"
+                <img src="{% static 'images/denny-muller-mGP8gyGb8zY-unsplash.jpg' %}" class="d-block w-100"
                      alt="Candy Image">
                 <div class="p-5 carousel-caption w-auto h-auto mx-auto my-auto">
                     <h1>The Sweet Tooth Cafe</h1>
@@ -73,7 +78,31 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{% static 'images/towfiqu-barbhuiya-33taMhUiF0I-unsplash.jpg' %}" class="d-block w-100 h-100"
+                <img src="{% static 'images/customerbox-aXq1oCCjlVM-unsplash.jpg' %}" class="d-block w-100"
+                     alt="Candy Image">
+                <div class="p-5 carousel-caption w-auto h-auto mx-auto my-auto">
+                    <h1>The Sweet Tooth Cafe</h1>
+                    <p>The sweetest little candy haven in Kenya</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/egor-lyfar-DPNrBT1WCMs-unsplash.jpg' %}" class="d-block w-100"
+                     alt="Candy Image">
+                <div class="p-5 carousel-caption w-auto h-auto mx-auto my-auto">
+                    <h1>The Sweet Tooth Cafe</h1>
+                    <p>The sweetest little candy haven in Kenya</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/jessica-loaiza-DHYfjAe_eeo-unsplash.jpg' %}" class="d-block w-100"
+                     alt="Candy Image">
+                <div class="p-5 carousel-caption w-auto h-auto mx-auto my-auto">
+                    <h1>The Sweet Tooth Cafe</h1>
+                    <p>The sweetest little candy haven in Kenya</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/karsten-winegeart-PL5FZkW0Qkk-unsplash.jpg' %}" class="d-block w-100 h-100"
                      alt="Candy Image">
                 <div class=" p-5 carousel-caption w-auto h-auto mx-auto my-auto">
                     <h1>The Sweet Tooth Cafe</h1>
@@ -93,37 +122,13 @@
         </div>
     </div>
 
-    <!-- Signin  and Signup Links -->
-    <section class="w-100 my-5 h-auto">
-        <div class="container d-flex flex-column justify-content-center shadow-lg p-2 w-50">
-            <!-- Section Title -->
-            <div class="row mt-3 mx-auto">
-                <h1 class="text-center">Join Today</h1>
-                <p class="text-center text-muted">4600 Members already joined!</p>
-            </div>
-            <!-- Signin and Login links -->
-            <div class="signup-login row  d-flex flex-row justify-content-center">
-                <a href="{% url 'login' %}"
-                   class="col-sm-2 mw-100 text-decoration-none d-flex flex-column justify-content-evenly">
-                    <i class="p-2 fa-solid fa-right-to-bracket mx-auto w-auto fs-1 text-black"></i>
-                    <span class="text-center p-2 text-black" style="color: black">Login</span>
-                </a>
-                <a href="{% url 'signup' %}"
-                   class="col-sm-2 mw-100 text-decoration-none d-flex flex-column justify-content-evenly">
-                    <i class="p-2 fa-solid fa-user-plus mx-auto w-auto fs-1"></i>
-                    <span class="text-center p-2" style="color: black">Signup</span>
-                </a>
-            </div>
-
-        </div>
-    </section>
 
     <!-- Latest Confectionery -->
     <section class="w-100 my-5">
         <div class="sweet-deals container px-3 p-3 mw-100 bg-white">
             <!-- Section Title -->
             <div class="w-auto mx-auto">
-                <h2 class="text-center my-3 fw-bold">Sweet Deals</h2>
+                <h1 class="text-center my-3 fw-bold fs-1">Sweet Deals</h1>
             </div>
 
             <div class="mx-auto p-3 d-flex flex-row justify-content-start w-100 overflow-scroll">
@@ -172,7 +177,7 @@
     </section>
 
     <!-- More information: Delivery, Candies and Payment -->
-    <section class="details d-flex flex-row justify-content-evenly border-2 w-100 my-5 container">
+    <section class="details d-flex flex-row justify-content-evenly w-100 my-5 container">
 
         <!-- Delivery info -->
         <div class="shadow-lg col text-center m-3 p-5 d-flex flex-column justify-content-evenly mw-100">
