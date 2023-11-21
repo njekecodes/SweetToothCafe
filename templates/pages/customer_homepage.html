@@ -1,11 +1,52 @@
 {% extends 'layouts/base.html' %}
-
+{% load static %}
+{% load humanize %}
 {% block title %}
-	{{ customer.first_name }}
+	{{ customer.first_name | capfirst }}
 {% endblock %}
 
 {% block content %}
 	{% include 'partials/navbar.html' %}
+
+    <!-- Profile Card -->
+    <div class="container card d-flex flex-row justify-content-evenly  bg-white shadow-lg m-5 p-5">
+
+        <div class="card-img w-auto me-1 h-auto">
+
+            {% if customer.profile_pic.url %}
+            <img src="{{ customer.profile_pic.url }} " alt="Profile Picture" style="max-width: 120px">
+            {% else %}
+                <img src="{% static 'images/sweets.png' %}" alt="Profile Pic" style="max-width: 120px">
+            {% endif %}
+        </div>
+    <div class="card-body w-auto h-auto">
+        <div class="card_title text-end">
+            <h3>
+                {% if customer.name %}
+                {{ customer.first_name | capfirst}} {{ customer.last_name | capfirst }}</h3>
+                {% else %}
+                    John Doe
+                {% endif %}
+        </div>
+        <div class="card-text text-end d-flex flex-column justify-content-evenly me-2">
+            <span>Dob</span>
+            <span>
+                {% if customer.gender %}
+                    {{  customer.gender | capfirst }}
+                {% else %}
+                    Rather not say
+                {% endif %}
+                </span>
+        </div>
+        <div class="card-link w-auto text-end mt-2 me-3">
+            <a href="{% url 'settings' %}" class="">
+                <i class="fa-solid fa-tools"></i>
+            </a>
+        </div>
+    </div>
+    </div>
+
+    <!--  -->
 
     {% include 'partials/footer.html' %}
 {% endblock %}

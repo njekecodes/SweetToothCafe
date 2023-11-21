@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
@@ -65,12 +66,19 @@ def login(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'You have signed up successfully!')
-            return redirect('home')
+            return redirect('customer_home')
 
     else:
         form = LoginForm()
 
     return render(request, 'pages/login.html', {'login_form': form})
+
+def customer_home(request, customer_id):
+    data = Customer.objects.get(pk=customer_id)
+    paginator = Paginator(data, 15)
+    page_number = request.GET.get('page')
+    data = paginator.get_page(page_number)
+    return render(request, 'pages/customer_homepage.html', {'customer': data})
 
 
 def signup(request):
@@ -81,11 +89,11 @@ def signup(request):
 
     if request.method == 'POST':
         # Load the form with data from your request
-        form = SignupForm(request.POST)
+        form = SignupForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return render(request, 'pages/customer_homepage.html')
 
     else:
         form = SignupForm()

@@ -7,7 +7,7 @@ admin.site.site_header = 'The Sweet Tooth Cafe'
 
 # Register your models here.
 class CustomersAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'email', 'is_subscribed', 'modified_at', 'created_at']
+    list_display = ['first_name', 'last_name', 'email', 'is_subscribed','profile_pic', 'modified_at', 'created_at']
     list_filter = ['is_subscribed']
     search_fields = ['first_name', 'last_name', 'email', 'created_at', 'modified_at']
     list_per_page = 20
