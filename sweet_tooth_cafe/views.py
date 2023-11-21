@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -13,7 +15,10 @@ from sweet_tooth_cafe.models import Customer, Candy
 # Create your views here.
 
 def home(request):
-    return render(request, 'pages/landing_page.html')
+    today = datetime.today()
+    month = today.month
+    latest_candy = Candy.objects.filter(created_at__month=month).order_by('flavour')
+    return render(request, 'pages/landing_page.html', {'latest_candy': latest_candy})
 
 
 
@@ -33,12 +38,16 @@ def cart(request):
 
 def all_candy(request):
     candy_data = Candy.objects.all().order_by('flavour')
+    #
     paginator = Paginator(candy_data, 20)
     page_number = request.GET.get('page')
     candy_data = paginator.get_page(page_number)
     return render(request, 'pages/all_candy.html', {'candies': candy_data})
 
 
+def show_brands(request, brand):
+    brand_data = Candy.objects.all().filter(brand=brand)
+    return redirect('all_candy')
 def about(request):
     return render(request, 'pages/about.html')
 
