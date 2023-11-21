@@ -11,8 +11,10 @@
     nav .fa-solid {
         color: white;
     }
+
+    nav
 </style>
-<nav class="navbar  sticky-top navbar-expand-lg navbar-light shadow-sm" style="background-color: black">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm" style="background-color: #950952">
     <div class="container flex-row mw-100 justify-content-end">
 
         <div class="col d-flex flex-row justify-content-start">
@@ -46,7 +48,18 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row justify-content-evenly p-4">
-
+                {# Search Form #}
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <form action="" class="d-flex">
+                            <input class="form-control me-2 collapse" id="collapseSearch" type="search" placeholder="Search" aria-label="Search">
+                            <button title="Search" class="nav-link btn" type="button" id="search-dropdown" data-bs-target="#collapseSearch" data-bs-toggle="collapse" aria-expanded="false" aria-controls="#collapseSearch" >
+                                <i class="fa-solid fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </li>
+                {# Link to home page #}
                 <li class="nav-item">
                     <a title="Home" class="nav-link  {% if '/' == request.path %} active {% endif %}"
                        aria-current="page"
@@ -54,6 +67,7 @@
                         <i class="fa-solid fa-home me-2"></i>
                     </a>
                 </li>
+                {# Link to store page #}
                 <li class="nav-item">
                     <a title="Store" href="{% url 'store' %}"
                        class="nav-link{% if '/store' == request.path %} active {% endif %}"
@@ -61,7 +75,7 @@
                         <i class="fa-solid fa-store me-2"></i>
                     </a>
                 </li>
-
+                {# Link to categories page #}
                 <li class="nav-item">
                     <a data-bs-target="collapse-categories" title="Categories" href="{% url 'categories' %}"
                        class="nav-link {% if '/wishlist' == request.path %} active {% endif %}">
@@ -69,6 +83,7 @@
                     </a>
                 </li>
 
+                {# Link to deals page #}
                 <li class="nav-item">
                     <a title="Deals" href="{% url 'deals' %}"
                        class="nav-link{% if '/deals' == request.path %} active {% endif %}" aria-current="page">
@@ -76,6 +91,7 @@
                     </a>
                 </li>
 
+                {# Link to wishlist page #}
                 <li class="nav-item">
                     <a title="Wish List" class="nav-link {% if '/wishlist' == request.path %} active {% endif %}"
                        aria-current="page"
@@ -84,7 +100,7 @@
                     </a>
                 </li>
 
-
+                {# Link to Cart #}
                 <li class="nav-item">
                     <a title="Cart" class="nav-link {% if '/cart' == request.path %} active {% endif %}"
                        aria-current="page"
@@ -92,6 +108,7 @@
                         <i class="fa-solid fa-cart-shopping me-2"></i>
                     </a>
                 </li>
+                {# Link to settings page #}
                 <li class="nav-item">
                     <a title="Settings" class="nav-link {% if '/settings' == request.path %} active {% endif %}"
                        aria-current="page"
@@ -99,6 +116,8 @@
                         <i class="fa-solid fa-tools me-2"></i>
                     </a>
                 </li>
+
+                {# Link to login/logout button #}
                 <li class="nav-item ms-5">
                     <a title="Logout" class="nav-link" href="#" role="button">
                         <i class="fa-solid fa-power-off me-2"></i>
