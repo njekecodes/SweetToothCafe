@@ -12,6 +12,12 @@
         color: white;
     }
 
+    a .active {
+        .active i {
+            color: black;
+        }
+    }
+
     nav
 </style>
 <nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm" style="background-color: #950952">
@@ -51,9 +57,12 @@
                 {# Search Form #}
                 <li class="nav-item">
                     <div class="dropdown">
-                        <form action="" class="d-flex">
-                            <input class="form-control me-2 collapse" id="collapseSearch" type="search" placeholder="Search" aria-label="Search">
-                            <button title="Search" class="nav-link btn" type="button" id="search-dropdown" data-bs-target="#collapseSearch" data-bs-toggle="collapse" aria-expanded="false" aria-controls="#collapseSearch" >
+                        <form action="{% url 'search_candy'%}" class="d-flex" method="get">
+                            <input class="form-control me-2 collapse" id="collapseSearch" type="search"
+                                   placeholder="Search" aria-label="Search">
+                            <button title="Search" class="nav-link btn" type="button" id="search-dropdown"
+                                    data-bs-target="#collapseSearch" data-bs-toggle="collapse" aria-expanded="false"
+                                    aria-controls="#collapseSearch">
                                 <i class="fa-solid fa-search"></i>
                             </button>
                         </form>
@@ -77,10 +86,35 @@
                 </li>
                 {# Link to categories page #}
                 <li class="nav-item">
-                    <a data-bs-target="collapse-categories" title="Categories" href="{% url 'categories' %}"
-                       class="nav-link {% if '/wishlist' == request.path %} active {% endif %}">
-                        <i class="fa-solid fa-bars me-2"></i>
+                    <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                       aria-controls="offcanvasExample">
+                        <i class="fa-solid fa-bars"></i>
                     </a>
+
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                         aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Categories</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div>
+                                <a href="" class=""></a>
+                            </div>
+                            <div class="dropdown mt-3">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-bs-toggle="dropdown">
+                                    Dropdown button
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </li>
 
                 {# Link to deals page #}
