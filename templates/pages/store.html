@@ -17,7 +17,15 @@
     </style>
 
     <!-- Shop all candy -->
+    <section class="">
+        {% for candy in candies %}
+            <div class="card">
+                {{ candy.brand }}
+            </div>
+        {% endfor %}
 
+
+    </section>
 
     <!-- Shop by Category section -->
 {#    <section class="container w-100 my-5 d-flex flex-column justify-content-evenly">#}
