@@ -4,10 +4,12 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
 
+from sweet_tooth_cafe import models
 from sweet_tooth_cafe.forms import LoginForm, SignupForm
 from sweet_tooth_cafe.models import Customer, Candy
 
@@ -19,8 +21,6 @@ def home(request):
     month = today.month
     latest_candy = Candy.objects.filter(created_at__month=month).order_by('flavour')
     return render(request, 'pages/landing_page.html', {'latest_candy': latest_candy})
-
-
 
 
 def blog(request):
@@ -96,8 +96,9 @@ def customer_home(request, customer_id):
 
 
 def store(request):
-    candy_data = Candy.objects.all()
-    return render(request, 'pages/store.html', {'candies': candy_data})
+    candies = Candy.objects.all()
+    brands = models.Candy.objects.order_by('brand').values('brand').distinct()
+    return render(request, 'pages/store.html', {'candies': candies, 'brands': brands})
 
 
 def signup(request):
@@ -133,3 +134,27 @@ def wishlist(request):
 @login_required()
 def customer_home(request):
     return render(request, 'pages/customer_homepage.html')
+
+
+def products_details(request, candy_id):
+    candy = Candy.objects.get(pk=candy_id)
+    brands = models.Candy.objects.values_list('brand').distinct()
+    return render(request, 'pages/product_details.html', {'candy': candy, 'brand': brands})
+
+
+def search_candy(request):
+    search_key = request.GET['search']
+    candy_search = Candy.objects.filter(
+        Q(flavour__icontains=search_key) |
+        Q(brand__icontains=search_key) |
+        Q(category__icontains=search_key) |
+        Q(price=search_key)
+    )
+    if search_key.isnumeric():
+        price = int(search_key)
+        candy_search = Candy.objects.filter(price=price)
+
+    paginator = Paginator(candy_search,15)
+    page_number = request.GET.get('page')
+    candy_search = paginator.get_page((page_number))
+    return render(request, 'pages/all_candy.html', {'candy_search': candy_search})
