@@ -38,31 +38,39 @@ def cart(request):
 
 def all_candy(request):
     candy_data = Candy.objects.all().order_by('flavour')
-    #
+    brands = models.Candy.objects.order_by('brand').values('brand').distinct()
+    categories = models.Candy.objects.order_by('category_name').values('category_name').distinct()
+    flavours = models.Candy.objects.order_by('flavour').values('flavour').distinct()
     paginator = Paginator(candy_data, 20)
     page_number = request.GET.get('page')
     candy_data = paginator.get_page(page_number)
-    return render(request, 'pages/all_candy.html', {'candies': candy_data})
+    return render(request, 'pages/all_candy.html', {'candies': candy_data, 'brands': brands,
+                                                    'categories': categories, 'flavours': flavours})
 
 
 def show_brands(request, brand):
-    brand_data = Candy.objects.all().filter(brand=brand)
-    return redirect('all_candy')
+    candy = models.Candy.objects.filter(brand=brand)
+    brands = models.Candy.objects.values('brand')
+    brand_name = {'brand_name': brand}
+    return render(request, 'pages/brand_category.html', {'candy': candy, 'brands': brands, 'brand_name': brand_name})
+
+
 def about(request):
     return render(request, 'pages/about.html')
-
-
-def deals(request):
-    return render(request, 'pages/deals.html')
-
 
 @login_required()
 def checkout(request):
     return None
 
 
+def deals(request):
+    discounts = models.Discount.objects.filter(is_active=True).order_by('name')
+    return render(request, 'pages/deals.html', {'discounts': discounts})
+
+
 def categories(request):
-    return render(request, 'pages/categories.html')
+    categories = models.Candy.objects.order_by('category_name').values('category_name').distinct()
+    return render(request, 'pages/categories.html', {'category': categories})
 
 
 def login(request):
@@ -95,12 +103,6 @@ def customer_home(request, customer_id):
     return render(request, 'pages/customer_homepage.html', {'customer': customer})
 
 
-def store(request):
-    candies = Candy.objects.all()
-    brands = models.Candy.objects.order_by('brand').values('brand').distinct()
-    return render(request, 'pages/store.html', {'candies': candies, 'brands': brands})
-
-
 def signup(request):
     @csrf_protect
     def customer_signup(request):
@@ -126,6 +128,12 @@ def settings(request):
     return render(request, 'pages/settings.html')
 
 
+def store(request):
+    candies = Candy.objects.all()
+    brands = models.Candy.objects.order_by('brand').values('brand').distinct()
+    return render(request, 'pages/store.html', {'candies': candies, 'brands': brands})
+
+
 @login_required()
 def wishlist(request):
     return render(request, 'pages/wishlist.html')
@@ -144,17 +152,39 @@ def products_details(request, candy_id):
 
 def search_candy(request):
     search_key = request.GET['search']
-    candy_search = Candy.objects.filter(
+    candy_data = Candy.objects.filter(
         Q(flavour__icontains=search_key) |
         Q(brand__icontains=search_key) |
-        Q(category__icontains=search_key) |
-        Q(price=search_key)
+        Q(category_name__icontains=search_key) |
+        Q(price=search_key) |
+        Q(add_ons__icontains=search_key)
     )
     if search_key.isnumeric():
         price = int(search_key)
-        candy_search = Candy.objects.filter(price=price)
+        candy_data = Candy.objects.filter(price=price)
 
-    paginator = Paginator(candy_search,15)
+    paginator = Paginator(candy_data,15)
     page_number = request.GET.get('page')
-    candy_search = paginator.get_page((page_number))
-    return render(request, 'pages/all_candy.html', {'candy_search': candy_search})
+    candy_data = paginator.get_page((page_number))
+    return render(request, 'pages/all_candy.html', {'candies': candy_data})
+
+
+def show_categories(request, category):
+    candy = models.Candy.objects.filter(category_name__icontains=category)
+    cat_name = {'cat_name': category}
+    category = models.Candy.objects.values('category_name')
+    return render(request, 'pages/product_categories.html', {'candy': candy, 'category': category, 'cat_name': cat_name})
+
+
+def show_flavours(request, flavour):
+    candy = models.Candy.objects.filter(flavour__icontains=flavour)
+    flavour_name = {'flavour_name': flavour}
+    flavour = models.Candy.objects.values('flavour')
+    return render(request, 'pages/product_categories.html',
+                  {'candy': candy, 'flavour': flavour, 'flavour_name': flavour_name})
+
+
+def product_deals(request, id):
+    discount = models.Discount.objects.get(pk=id)
+    discount_candy = models.Candy.objects.filter(discount_id=id).order_by('flavour')
+    return render(request, 'pages/product_deals.html', {'discount_candy': discount_candy, 'discount': discount})

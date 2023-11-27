@@ -26,11 +26,17 @@
         .carousel-caption {
             background-color: rgba(255, 255, 255, 0.8);
         }
+
+        .product a:hover {
+            color: #D33665 !important;
+
+        }
     </style>
     {% include 'partials/navbar.html' %}
 
     <!-- Carousel -->
-    <div class="h-50 carousel carousel-dark carousel-fade shadow-lg mb-5" data-bs-ride="carousel" id="carouselExampleCaptions">
+    <div class="h-50 carousel carousel-dark carousel-fade shadow-lg mb-5" data-bs-ride="carousel"
+         id="carouselExampleCaptions">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                     aria-label="Slide 1"></button>
@@ -55,17 +61,11 @@
                         <h1 class="text-center">Join Today</h1>
                     </div>
                     <!-- Signin and Login links -->
-                    <div class="signup-login row my-auto d-flex flex-row justify-content-evenly">
+                    <div class="signup-login mw-100 row my-auto d-flex flex-row justify-content-center">
                         <a href="{% url 'login' %}"
-                           class="col mw-100 text-decoration-none d-flex flex-row justify-content-evenly">
-                            <i class="p-2 fa-solid fa-right-to-bracket mx-0 w-auto fs-1 text-black"></i>
-                            <span class="text-center p-2 text-black" style="color: black">Login</span>
-                        </a>
+                           class="w-auto text-decoration-none">Login</a>
                         <a href="{% url 'signup' %}"
-                           class="col mw-100 text-decoration-none d-flex flex-row justify-content-evenly">
-                            <span class="text-center p-2" style="color: black">Signup</span>
-                            <i class="p-2 fa-solid fa-user-plus mx-0 w-auto fs-1"></i>
-                        </a>
+                           class="w-auto text-decoration-none">Signup</a>
                     </div>
                 </div>
             </div>
@@ -73,40 +73,46 @@
                 <img src="{% static 'images/denny-muller-mGP8gyGb8zY-unsplash.jpg' %}" class="d-block w-100"
                      alt="Candy Image">
                 <div class="p-5 carousel-caption w-auto h-auto mx-auto my-auto">
-                    <h1>The Sweet Tooth Cafe</h1>
-                    <p>The sweetest little candy haven in Kenya</p>
+                    <h1>Categories</h1>
+                    <a href="{% url 'all_candy'  %}" class="text-decoration-none">
+                        Browse Categories
+                    </a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{% static 'images/customerbox-aXq1oCCjlVM-unsplash.jpg' %}" class="d-block w-100"
                      alt="Candy Image">
                 <div class="p-5 carousel-caption w-auto h-auto mx-auto my-auto">
-                    <h1>The Sweet Tooth Cafe</h1>
-                    <p>The sweetest little candy haven in Kenya</p>
+                    <h1>Its a Candy Land!</h1>
+                    <p>A diverse collection of sweets for any party! </p>
+                    <a href="{% url 'product_categories' category='Sweets' %}" class="text-decoration-none">Browse Sweets</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{% static 'images/egor-lyfar-DPNrBT1WCMs-unsplash.jpg' %}" class="d-block w-100"
                      alt="Candy Image">
                 <div class="p-5 carousel-caption w-auto h-auto mx-auto my-auto">
-                    <h1>The Sweet Tooth Cafe</h1>
-                    <p>The sweetest little candy haven in Kenya</p>
+                    <h1>Sweetest Deals</h1>
+                    <p>Dandia the sweetest deals in town!</p>
+                    <a href="{% url 'all_candy' %}" class="text-decoration-none text-center">Browse</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{% static 'images/jessica-loaiza-DHYfjAe_eeo-unsplash.jpg' %}" class="d-block w-100"
                      alt="Candy Image">
                 <div class="p-5 carousel-caption w-auto h-auto mx-auto my-auto">
-                    <h1>The Sweet Tooth Cafe</h1>
-                    <p>The sweetest little candy haven in Kenya</p>
+                    <h1>Chocolate Haven</h1>
+                    <p>A variety of chocolates for any palate. </p>
+                    <a href="{% url 'product_categories' category='Chocolate' %}" class="text-decoration-none">Browse Chocolates</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{% static 'images/karsten-winegeart-PL5FZkW0Qkk-unsplash.jpg' %}" class="d-block w-100 h-100"
                      alt="Candy Image">
                 <div class=" p-5 carousel-caption w-auto h-auto mx-auto my-auto">
-                    <h1>The Sweet Tooth Cafe</h1>
-                    <p>The sweetest little candy haven in Kenya</p>
+                    <h1>Sweet Discounts</h1>
+                    <p>Dandia discounts on different products</p>
+                    <a href="{% url 'all_candy' %}" class="text-decoration-none">Browse</a>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -146,10 +152,14 @@
                         <!-- Card title and text -->
                         <div class="card-body text-center">
                             <div class="card-title w-100 h-auto">
-                                <h6>{{ candy.flavour }}</h6>
+                                <a href="{% url 'product_details' candy.id %}" class="text-decoration-none">
+                                    <h6>{{ candy.flavour }} {{ candy.category_name }} {% if candy.add_ons != 'Plain' %} with {{ candy.add_ons }} {% endif %}</h6>
+                                </a>
                             </div>
-                            <div class="card-text w-auto h-auto">
-                                <p class="text-muted" style="font-size: .8em">{{ candy.brand | capfirst }}</p>
+                            <div class="product card-text w-auto h-auto">
+                                <a title="View {{ candy.brand }}" class="text-muted card-link text-decoration-none"
+                                   href="{% url 'brand_categories' candy.brand %}"
+                                   style="font-size: .8em">{{ candy.brand | capfirst }}</a>
                                 <p class="fw-bold" style='font-size: 1.1em'>Ksh. {{ candy.price | intcomma }}</p>
                             </div>
                             <!-- Card links -->

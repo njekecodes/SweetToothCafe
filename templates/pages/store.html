@@ -17,13 +17,19 @@
     </style>
 
     <!-- Shop all candy -->
-    <section class="">
-        {% for candy in candies %}
-            <div class="card">
-                {{ candy.brand }}
-            </div>
+    <section class="dropdown">
+        <a class="btn dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenulink">
+        {% for brand in brands %}
+            <li class="">
+                <a href="{% url 'brand_categories' brand %}" class="btn dropdown-item">
+                    {{ brand.brand }}
+                </a>
+            </li>
         {% endfor %}
-
+        </ul>
 
     </section>
 

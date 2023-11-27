@@ -11,22 +11,23 @@
 {% include 'partials/navbar.html' %}
     <!-- Category Cards -->
     <section class="w-100 my-5 d-flex flex-row justify-content-evenly">
-
-        <div class="card p-3 w-50">
+        {% for category in category %}
+        <div class="card p-3 w-50 m-3">
             <div class="card-img-top d-flex justify-content-evenly p-2">
                 <img src="{% static 'images/candies.png' %}" alt="Image" class="img-fluid">
             </div>
             <div class="p-2 card-body card-img-overlay d-flex flex-column justify-content-evenly" style="background-color: rgba(0,0,0,.5)">
                 <div class="text-center card-title row d-flex justify-content-evenly">
-                    <h1 class="text-white">Chocolate</h1>
+                    <h1 class="text-white">{{ category.category_name }}</h1>
                 </div>
                 <div class="card-text row d-flex justify-content-evenly text-center">
-                    <a href="" class="card-link text-decoration-none">
+                    <a href="{% url 'product_categories' category.category_name %}" class="card-link text-decoration-none">
                         <span class="btn btn-outline-light">Explore</span>
                     </a>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </section>
 
 {% include 'partials/footer.html' %}
