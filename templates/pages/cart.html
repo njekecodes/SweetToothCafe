@@ -76,7 +76,6 @@
     </section>
     <section class="w-auto p-2 my-5">
 
-
         <!-- Cart Items -->
         <table class="table table-responsive shadow-lg w-75 mx-auto">
             <thead class="p-5 w-auto text-center mb-5 table-dark">
@@ -88,7 +87,8 @@
 
             <tbody class="p-5">
             <!-- Loop Through Wishlist Table and populate data  -->
-            <tr class="">
+            {% for item in cart_items %}
+                <tr class="">
                 <td>
                     <div class="col col-6 w-auto d-flex flex-column justify-content-evenly"
                          style="max-width: 100px; max-height: 100px">
@@ -131,6 +131,7 @@
 
                 </td>
             </tr>
+            {% endfor %}
             </tbody>
         </table>
     </section>

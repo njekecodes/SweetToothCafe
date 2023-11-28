@@ -2,51 +2,138 @@
 {% load static %}
 {% load humanize %}
 {% block title %}
-	{{ customer.first_name | capfirst }}
+    {{ customer.first_name | capfirst }} {{ customer.last_name | capfirst }}
 {% endblock %}
 
 {% block content %}
-	{% include 'partials/navbar.html' %}
-
+    {% include 'partials/navbar.html' %}
+    {% include 'partials/alert.html' %}
     <!-- Profile Card -->
-    <div class="container card d-flex flex-row justify-content-evenly  bg-white shadow-lg m-5 p-5">
+    <div class="container card d-flex flex-row justify-content-center  bg-white shadow-lg mx-auto my-5 w-auto p-3">
+        {# Customer image #}
+        <div class="card-img h-auto w-auto">
 
-        <div class="card-img w-auto me-1 h-auto">
-
-            {% if customer.profile_pic.url %}
-            <img src="{{ customer.profile_pic.url }} " alt="Profile Picture" style="max-width: 120px">
+            {% if customer.profile_pic %}
+                <img src="{{ customer.profile_pic.url }} " alt="Profile Picture" class="img-thumbnail"
+                     style="max-height: 200px">
             {% else %}
-                <img src="{% static 'images/sweets.png' %}" alt="Profile Pic" style="max-width: 120px">
+                <img src="{% static 'images/sweets.png' %}" alt="Profile Pic" class="img-thumbnail"
+                     style="max-height: 200px">
             {% endif %}
         </div>
-    <div class="card-body w-auto h-auto">
-        <div class="card_title text-end">
-            <h3>
-                {% if customer.name %}
-                {{ customer.first_name | capfirst}} {{ customer.last_name | capfirst }}</h3>
-                {% else %}
-                    John Doe
-                {% endif %}
-        </div>
-        <div class="card-text text-end d-flex flex-column justify-content-evenly me-2">
-            <span>Dob</span>
-            <span>
-                {% if customer.gender %}
-                    {{  customer.gender | capfirst }}
-                {% else %}
-                    Rather not say
-                {% endif %}
-                </span>
-        </div>
-        <div class="card-link w-auto text-end mt-2 me-3">
-            <a href="{% url 'settings' %}" class="">
-                <i class="fa-solid fa-tools"></i>
-            </a>
+        {# Customer information #}
+        <div class="card-body w-auto h-auto my-auto">
+            <div class=" text-end">
+                <h1 class="mb-4">
+                    {{ customer.first_name | capfirst }} {{ customer.last_name | capfirst }}
+                </h1>
+            </div>
+            <div class="text-end d-flex flex-row justify-content-end me-2 w-auto">
+                <div class="w-auto me-5">
+                    <div class="w-100">
+                        <span>Born on: </span>
+                    </div>
+                    <div class="w-100">
+                        <span>Gender: </span>
+                    </div>
+                </div>
+                <div class="w-auto">
+                    <div class="w-100">
+                        <span>{{ customer.dob | date }}</span>
+                    </div>
+                    <div class="w-100">
+                        <span>{{ customer.gender | lower }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Section with settings, orders and wishlist tabs -->
+    <div class="container d-flex flex-row w-100 mx-auto my-5 shadow-lg bg-white p-3">
+        {# Sidebar navigation links #}
+        <div class="col w-25 ">
+            <ul class="nav border-end nav-pills d-flex flex-column justify-content-start w-100">
+                <li class="nav-item">
+                    <a href="" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#nav-orders-tab" aria>
+                        <i class="fa-solid fa-shopping-bag"></i>
+                        View Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#nav-wishlist-tab">
+                        <i class="fa-solid fa-heart"></i>
+                        Wish List
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#nav-settings-tab">
+                        <i class="fa-solid fa-tools"></i>
+                        My Account
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        {# Sidebar links Content #}
+        <div class="col w-75 tab-content">
+            {# Orders Data #}
+            <div class="tab-pane fade p-2" id="nav-orders-tab" role="tabpanel" aria-labelledby="nav-orders-tab">
+
+            {% if orders %}
+                    {% for order in orders %}
+                        <div class="">
+                            Order ID
+                            Created On
+                            Last Modified
+                            Status
+                            Delivery
+                        </div>
+                    {% endfor %}
+            {% else %}
+                <div class="d-flex flex-row justify-content-center w-100">
+                    <a href="{% url 'all_candy' %}" class="text-decoration-none">
+                        <p class="w-100 text-center">
+                            Shop and make your first order!
+                        </p>
+                    </a>
+                </div>
+
+
+            {% endif %}
+            </div>
+            {# Wish List Data #}
+            <div class="tab-pane fade p-2" id="nav-wishlist-tab" role="tabpanel" aria-labelledby="nav-wishlist-tab">
+
+                {% if wishlists %}
+                    {% for wishlist in wishlists %}
+                        <div class="">
+                            Order ID
+                            Created On
+                            Last Modified
+                            Status
+                            Delivery
+                        </div>
+                    {% endfor %}
+            {% else %}
+                <div class="d-flex flex-row justify-content-center w-100">
+                    <a href="{% url 'all_candy' %}" class="text-decoration-none">
+                        <p class="w-100 text-center">No items in your wishlist!</p>
+                        <a href="{% url 'all_candy' %}" class="text-decoration-none">Add Now</a>
+                    </a>
+                </div>
+
+
+            {% endif %}
+            </div>
+            {# Settings data #}
+            <div class="tab-pane fade p-2" id="nav-settings-tab" role="tabpanel" aria-labelledby="nav-settings-tab">
+                Settings
+                Personal Information
+                Account
+                Subscriptions
+            </div>
+        </div>
     </div>
-
-    <!--  -->
-
     {% include 'partials/footer.html' %}
 {% endblock %}

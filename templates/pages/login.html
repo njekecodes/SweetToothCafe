@@ -7,7 +7,7 @@
 {% block content %}
     <style>
         body {
-            background-image: url("media/pages/yes-and-studio-XVYz_QeiEBw-unsplash.jpg");
+            background-image: url("../../media/pages/yes-and-studio-XVYz_QeiEBw-unsplash.jpg");
             -webkit-background-size: contain;
             -moz-background-size: cover;
             background-size: cover;
@@ -35,7 +35,7 @@
             <!-- logo and titles -->
             <div class="row">
                 <div class="row card-img w-100 mx-auto justify-content-evenly pb-2">
-                    <img src="{% static 'images/sweets.png' %}" alt="" class="w-auto img-fluid "
+                    <img src="{% static 'images/candies.png' %}" alt="" class="w-auto img-fluid "
                          style="max-width: 75px; max-height: 75px;">
                 </div>
                 <!-- Sweet Tooth Cafe Title -->
@@ -76,6 +76,7 @@
 
             <!-- Login Form -->
             <div class="row w-100 mx-auto" style="max-width: 500px;">
+                {% include 'partials/alert.html' %}
                 <form action="" method="post" class="w-100 px-3 py-1">
                     {% csrf_token %}
                     {{ login_form | crispy }}

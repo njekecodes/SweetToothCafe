@@ -27,10 +27,7 @@
             background-color: rgba(255, 255, 255, 0.8);
         }
 
-        .product a:hover {
-            color: #D33665 !important;
 
-        }
     </style>
     {% include 'partials/navbar.html' %}
 
@@ -62,7 +59,7 @@
                     </div>
                     <!-- Signin and Login links -->
                     <div class="signup-login mw-100 row my-auto d-flex flex-row justify-content-center">
-                        <a href="{% url 'login' %}"
+                        <a href="{% url 'signin' %}"
                            class="w-auto text-decoration-none">Login</a>
                         <a href="{% url 'signup' %}"
                            class="w-auto text-decoration-none">Signup</a>

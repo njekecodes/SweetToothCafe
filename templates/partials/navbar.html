@@ -1,146 +1,257 @@
 {% load static %}
 <style>
-    .logo {
-        max-height: 100px;
+    .active a {
+            color: black;
+
     }
+
+    .logo {
+        max-height: 150px;
+    }
+
 
     i {
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 
-    nav .fa-solid {
-        color: white;
+   .navbar-title  {
+       color: rgba(8, 79, 71, 0.9);
+       font-family: 'Lora', serif;
+   }
+    .nav-item p {
+        font-size: .9em;
+        color: rgba(8,79,71,0.9);
+    }
+    .row1 i {
+        color: rgba(8,79,71,0.9);
     }
 
-    a .active {
-        .active i {
-            color: black;
-        }
+    .row2 {
+        background-color: #950952;
     }
-
-    nav
+    nav {
+        transition: top 0.5s ease-in-out !important;
+    }
 </style>
-<nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm" style="background-color: #950952">
-    <div class="container flex-row mw-100 justify-content-end">
-        {# Title and Logo #}
-        <div class="col d-flex flex-row justify-content-start">
-            <!-- Navbar Logo -->
-            <div class="col h-auto w-auto my-auto">
-                <a title="Home" href="{% url 'home' %}" class="navbar-brand">
-                    <img src="{% static 'images/candies.png' %}" alt="Slideshow" class="img-fluid logo"
-                         style="max-width: 70px">
-                </a>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm" style="background-color: white">
+    <div class="container d-flex flex-column mw-100">
+        <div class="row1 row flex-row w-100 justify-content-start">
+            {# Title and Logo #}
+            <div class="col w-auto d-flex flex-row justify-content-start">
+                <!-- Navbar Logo -->
+                <div class="col h-auto w-auto my-auto">
+                    <a title="Home" href="{% url 'home' %}" class="navbar-brand">
+                        <img src="{% static 'images/candies.png' %}" alt="Slideshow" class="img-fluid logo"
+                             style="max-width: 70px">
+                    </a>
+                </div>
+                <!-- Navbar Title (Sweet Tooth Confectionery) -->
+                <div class="col d-flex h-100 my-auto">
+                    <a title="Home" class="navbar-brand d-flex flex-column justify-content-evenly"
+                       href="{% url 'home' %}">
+                        <div class="navbar-title">
+                            <h3 class="fw-bold">The Sweet Tooth</h3>
+                        </div>
+                        <div class="navbar-title">
+                            <h2 class="fw-bold">Confectionery</h2>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <!-- Navbar Title (Sweet Tooth Confectionery) -->
-            <div class="col d-flex h-100 my-auto">
-                <a title="Home" class="navbar-brand" href="{% url 'home' %}">
-                    <h3 class="text-white">The Sweet Tooth Confectionery</h3>
-                </a>
-            </div>
-        </div>
 
-        <!-- Toggle Button -->
-        <div class="col me-0 d-flex flex-row justify-content-end w-auto">
-            <button class="navbar-toggler my-auto" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon text-white">
-                <i class="fa-solid fa-bars text-white" style="font-size: 1.6em"></i
+            <!-- Toggle Button -->
+            <div class="col w-auto me-0 d-flex flex-row justify-content-end w-auto">
+                <button class="navbar-toggler my-auto border-0 bg-white" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo02"
+                        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <i class="fa-solid fa-bars" style="font-size: 1.6em"></i
                 ></span>
-            </button>
+                </button>
+
+            </div>
+
+            <!-- Navbar links (icons) -->
+            <div class="col w-auto collapse navbar-collapse" id="navbarTogglerDemo02">
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row justify-content-evenly p-4">
+
+                    {# Link to home page #}
+                    <li class="nav-item">
+                        <a title="Home" class="nav-link d-flex flex-row justify-content-evenly align-items-baseline  {% if '/' == request.path %} active {% endif %}"
+                           aria-current="page"
+                           href="{% url 'home' %}">
+                            <i class="fa-solid fa-home mx-2"></i>
+                            <p class="">HOME</p>
+                        </a>
+                    </li>
+                    {# Link to store page #}
+                    <li class="nav-item">
+                        <a title="Store" href="{% url 'all_candy' %}"
+                           class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/all-candy' == request.path %} active {% endif %}"
+                           aria-current="page">
+                            <i class="fa-solid fa-candy-cane mx-2"></i>
+                            <p>STORE</p>
+                        </a>
+                    </li>
+
+                    {# Link to deals page #}
+                    <li class="nav-item">
+                        <a title="Deals" href="{% url 'deals' %}"
+                           class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/deals' == request.path %} active {% endif %}" aria-current="page">
+                            <i class="fa-solid fa-tag mx-2"></i>
+                            <p>DEALS</p>
+                        </a>
+                    </li>
+
+                    {# Link to wishlist page #}
+                    <li class="nav-item">
+                        <a title="Wish List" class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/wishlist' == request.path %} active {% endif %}"
+                           aria-current="page"
+                           href="{% url 'wishlist' 0 %}">
+                            <i class="fa-solid fa-heart mx-2"></i>
+                            <p>WISH LIST</p>
+                        </a>
+                    </li>
+
+                    {# Link to Cart #}
+                    <li class="nav-item">
+                        <a title="Cart" class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/cart' == request.path %} active {% endif %}"
+                           aria-current="page"
+                           href="{% url 'cart' %}">
+                            <i class="fa-solid fa-cart-shopping mx-2"></i>
+                            <p>CART</p>
+                        </a>
+                    </li>
+                    {# Link to settings page #}
+                    <li class="nav-item w-auto">
+                        <a title="Settings" class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/settings' == request.path %} active {% endif %}"
+                           aria-current="page"
+                           href="{% url 'settings' %}">
+                            <i class="fa-solid fa-tools mx-2"></i>
+                            <p>SETTINGS</p>
+                        </a>
+                    </li>
+
+                    {# Link to login/logout button #}
+                    <li class="nav-item ms-5 w-auto">
+                        <a title="Logout" class="nav-link" href="#" role="button">
+                            <i class="fa-solid fa-power-off mx-2"></i>
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </div>
 
         </div>
+        <!-- Filters section -->
+        <div class="w-100 mx-0 row2 filters d-flex flex-row justify-content-center collapse navbar-collapse"
+             id="collapseCategories">
+            <!-- Order by -->
 
-        <!-- Navbar links (icons) -->
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <!-- Shop all candy -->
+            <div class="p-2 d-flex flex-row justify-content-start w-auto">
 
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row justify-content-evenly p-4">
-                {# Search Form #}
-                <li class="nav-item">
+                {# Brands dropdown link and menu #}
+                <div class="dropdown w-100">
+                    <a class="btn dropdown-toggle text-white" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Brands
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenulink">
+                        {% for brand in brands %}
+                            <li class="">
+                                <a href="{% url 'brand_categories' brand.brand %}" class="btn dropdown-item">
+                                    {{ brand.brand }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+                <!-- Categories dropdown -->
+                <div class="dropdown w-100">
+                    <a class="btn dropdown-toggle text-white" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenulink">
+                        {% for category in categories %}
+                            <li class="">
+                                <a href="{% url 'product_categories' category.category_name %}"
+                                   class="btn dropdown-item">
+                                    {{ category.category_name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+                <!-- Flavours dropdown -->
+                <div class="dropdown w-100">
+                    <a class="btn dropdown-toggle text-white" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Flavours
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenulink">
+                        {% for f in flavours %}
+                            <li class="">
+                                <a href="{% url 'product_flavours' f.flavour %}" class="btn dropdown-item">
+                                    {{ f.flavour }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+                {# Price dropdown #}
+                <div class="dropdown w-100">
+                    <a class="btn dropdown-toggle text-white" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Price
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenulink">
+                        <li class="">
+                            <a href="" class="btn dropdown-item">
+                                Low to High
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="" class="btn dropdown-item">
+                                High to Low
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                {# Search Bar #}
+                <div class="w-100">
+                    <!-- Search bar -->
+                    {# Search Form #}
                     <div class="dropdown">
                         <form action="{% url 'search_candy' %}" class="d-flex" method="get">
-                            <input class="form-control me-2 collapse" id="collapseSearch" type="search"
-                                   placeholder="Search" aria-label="Search">
-                            <button title="Search" class="nav-link btn" type="button" id="search-dropdown"
+                            <button title="Search" class=" btn" type="button" id="search-dropdown"
                                     data-bs-target="#collapseSearch" data-bs-toggle="collapse" aria-expanded="false"
                                     aria-controls="#collapseSearch">
-                                <i class="fa-solid fa-search"></i>
+                                <i class="fa-solid fa-search text-white"></i>
                             </button>
+                            <input class="form-control me-2 collapse" id="collapseSearch" type="search"
+                                   placeholder="Search" aria-label="Search" style="min-width: 150px">
+
                         </form>
                     </div>
-                </li>
-                {# Link to home page #}
-                <li class="nav-item">
-                    <a title="Home" class="nav-link  {% if '/' == request.path %} active {% endif %}"
-                       aria-current="page"
-                       href="{% url 'home' %}">
-                        <i class="fa-solid fa-home me-2"></i>
-                    </a>
-                </li>
-                {# Link to store page #}
-                <li class="nav-item">
-                    <a title="Store" href="{% url 'all_candy' %}"
-                       class="nav-link {% if '/all-candy' == request.path %} active {% endif %}"
-                       aria-current="page">
-                        <i class="fa-solid fa-candy-cane me-2"></i>
-                    </a>
-                </li>
-                {# Link to categories page #}
-                <li class="nav-item">
-                    <a class="nav-link" title="Categories" data-bs-toggle="offcanvas" href="#offcanvasCategories" role="button" aria-controls="offcanvasCategories">
-                        <i class="fa-solid fa-bars"></i>
-                    </a>
-                    {% include 'partials/offcanvas.html' %}
-                </li>
-
-                {# Link to deals page #}
-                <li class="nav-item">
-                    <a title="Deals" href="{% url 'deals' %}"
-                       class="nav-link{% if '/deals' == request.path %} active {% endif %}" aria-current="page">
-                        <i class="fa-solid fa-tag me-2"></i>
-                    </a>
-                </li>
-
-                {# Link to wishlist page #}
-                <li class="nav-item">
-                    <a title="Wish List" class="nav-link {% if '/wishlist' == request.path %} active {% endif %}"
-                       aria-current="page"
-                       href="{% url 'wishlist' %}">
-                        <i class="fa-solid fa-heart me-2"></i>
-                    </a>
-                </li>
-
-                {# Link to Cart #}
-                <li class="nav-item">
-                    <a title="Cart" class="nav-link {% if '/cart' == request.path %} active {% endif %}"
-                       aria-current="page"
-                       href="{% url 'cart' %}">
-                        <i class="fa-solid fa-cart-shopping me-2"></i>
-                    </a>
-                </li>
-                {# Link to settings page #}
-                <li class="nav-item">
-                    <a title="Settings" class="nav-link {% if '/settings' == request.path %} active {% endif %}"
-                       aria-current="page"
-                       href="{% url 'settings' %}">
-                        <i class="fa-solid fa-tools me-2"></i>
-                    </a>
-                </li>
-
-                {# Link to login/logout button #}
-                <li class="nav-item ms-5">
-                    <a title="Logout" class="nav-link" href="#" role="button">
-                        <i class="fa-solid fa-power-off me-2"></i>
-                    </a>
-                </li>
-
-            </ul>
+                </div>
+            </div>
 
 
         </div>
-
-        {# Toggle Categories : Offcanvas#}
-
     </div>
+
 
 </nav>

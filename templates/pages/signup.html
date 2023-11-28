@@ -63,6 +63,7 @@
             </div>
             <!-- Sign up form -->
             <div class="row w-100 mx-auto">
+                {% include 'partials/alert.html' %}
                 <form action="" method="post" class="w-100 px-5 py-1" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ signup_form | crispy }}
@@ -74,7 +75,7 @@
             </div>
             <div class="row w-100 mx-auto mt-4 mb-2">
                 <div class="col d-flex w-50 justify-content-evenly">
-                    <a href="{% url 'login' %}" class="text-decoration-none text-muted text-center" style="font-size: .8em">Login Instead?</a>
+                    <a href="{% url 'signin' %}" class="text-decoration-none text-muted text-center" style="font-size: .8em">Login Instead?</a>
                 </div>
             </div>
             <div class="row w-auto mx-auto ">

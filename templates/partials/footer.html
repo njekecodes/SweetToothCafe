@@ -1,46 +1,117 @@
- <footer class=" mt-auto position-relative bottom-0 text-center text-white">
-  <!-- Grid container -->
-  <div class="container p-4 pb-0">
-    <!-- Section: Social media -->
-    <section class="mb-4">
-      <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fa-brands fa-square-facebook"></i>
-      </a>
+<footer class="mt-auto position-relative bottom-0 text-center text-white">
 
-      <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-twitter"></i
-      ></a>
+    <!-- Important Links -->
+    <div class="container p-3 d-flex flex-row justify-content-evenly w-100">
+        <div class="d-flex flex-row justify-content-start">
+            {# First set: Contact Details #}
+            <div class=" mt-0 col d-flex flex-column justify-content-evenly text-start">
+                <div class="w-100">
+                    <p>The Westlands Mall, Nairobi, Kenya</p>
+                </div>
+                <div class="w-100">
+                    <p>+254 704 172 740</p>
+                </div>
+                <div class="w-100">
+                    <p>sales@stc.co.ke</p>
+                </div>
+            </div>
 
-      <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-google"></i
-      ></a>
+            {# Second group of links: General Links #}
+            <div class="col w-100 col text-decoration-none">
+                <ul class="list-unstyled text-start">
 
-      <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-instagram"></i
-      ></a>
+                    {% for category in categories %}
+                        <li class="">
+                            <a href="{% url 'product_categories' category.category_name %}"
+                               class="text-white text-decoration-none">{{ category.category_name }}</a>
+                        </li>
+                    {% endfor %}
 
-      <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
+                </ul>
+            </div>
+        </div>
 
-      <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fa-brands fa-square-snapchat"></i>
-      </a>
-    </section>
-    <!-- Section: Social media -->
-  </div>
-  <!-- Grid container -->
+        <div class="d-flex flex-row justify-content-end w-auto">
+            {# Third set of links: Categories #}
+            <div class=" col m-2 p-2 text-decoration-none ">
+                <ul class="list-unstyled text-end">
 
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2015 Copyright:
-    <a class="text-white text-decoration-none" href="{% url 'about' %}">Sweet Tooth Cafe</a>
-  </div>
-  <!-- Copyright -->
+                    <li class="">
+                        <a href="{% url 'blog' %}" class="text-white text-decoration-none">Blog</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'contact_us' %}" class="text-white text-decoration-none">Contact</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'home' %}" class="text-white text-decoration-none">Home</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'all_candy' %}" class="text-white text-decoration-none">Store</a>
+                    </li>
+                </ul>
+            </div>
+
+            {# Fourth set of links: Personal Links #}
+            <div class="col m-2 p-2 text-decoration-none w-100">
+                <ul class="list-unstyled text-end w-100">
+                    <li class="">
+                        <a href="{% url 'all_candy' %}" class="text-white text-decoration-none w-100">My Cart</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'blog' %}" class="text-white text-decoration-none w-100">My Settings</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'wishlist' 1 %}" class="text-white text-decoration-none w-100">Wish List</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="" role="button">
+                <i class="fa-brands fa-square-facebook"></i>
+            </a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
+            ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
+            ><i class="fab fa-google"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
+            ><i class="fab fa-instagram"></i
+            ></a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
+            ><i class="fab fa-linkedin-in"></i
+            ></a>
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="" role="button"
+            ><i class="fa-brands fa-square-snapchat"></i>
+            </a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2015 Copyright:
+        <a class="text-white text-decoration-none" href="{% url 'about' %}">Sweet Tooth Cafe</a>
+    </div>
+    <!-- Copyright -->
 </footer>
