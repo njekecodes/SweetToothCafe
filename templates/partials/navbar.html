@@ -1,7 +1,7 @@
 {% load static %}
 <style>
     .active a {
-            color: black;
+        color: black;
 
     }
 
@@ -14,40 +14,43 @@
         font-size: 1.2em;
     }
 
-   .navbar-title  {
-       color: rgba(8, 79, 71, 0.9);
-       font-family: 'Lora', serif;
-   }
+    .navbar-title {
+        color: rgba(8, 79, 71, 0.9);
+        font-family: 'Lora', serif;
+    }
+
     .nav-item p {
         font-size: .9em;
-        color: rgba(8,79,71,0.9);
+        color: rgba(8, 79, 71, 0.9);
     }
+
     .row1 i {
-        color: rgba(8,79,71,0.9);
+        color: rgba(8, 79, 71, 0.9);
     }
 
     .row2 {
         background-color: #950952;
     }
+
     nav {
         transition: top 0.5s ease-in-out !important;
     }
 </style>
 <nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm" style="background-color: white">
     <div class="container d-flex flex-column mw-100">
-        <div class="row1 row flex-row w-100 justify-content-start">
+        <div class="row1 row flex-row w-auto justify-content-start">
             {# Title and Logo #}
             <div class="col w-auto d-flex flex-row justify-content-start">
                 <!-- Navbar Logo -->
                 <div class="col h-auto w-auto my-auto">
-                    <a title="Home" href="{% url 'home' %}" class="navbar-brand">
+                    <a title="Home" href="{% url 'home' %}" class="navbar-brand w-100">
                         <img src="{% static 'images/candies.png' %}" alt="Slideshow" class="img-fluid logo"
                              style="max-width: 70px">
                     </a>
                 </div>
                 <!-- Navbar Title (Sweet Tooth Confectionery) -->
-                <div class="col d-flex h-100 my-auto">
-                    <a title="Home" class="navbar-brand d-flex flex-column justify-content-evenly"
+                <div class="col d-flex w-auto h-100 my-auto">
+                    <a title="Home" class="w-auto navbar-brand d-flex flex-column justify-content-evenly"
                        href="{% url 'home' %}">
                         <div class="navbar-title">
                             <h3 class="fw-bold">The Sweet Tooth</h3>
@@ -74,11 +77,12 @@
             <!-- Navbar links (icons) -->
             <div class="col w-auto collapse navbar-collapse" id="navbarTogglerDemo02">
 
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row justify-content-evenly p-4">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row justify-content-evenly p-3 w-auto">
 
                     {# Link to home page #}
                     <li class="nav-item">
-                        <a title="Home" class="nav-link d-flex flex-row justify-content-evenly align-items-baseline  {% if '/' == request.path %} active {% endif %}"
+                        <a title="Home"
+                           class="nav-link d-flex flex-row justify-content-evenly align-items-baseline  {% if '/' == request.path %} active {% endif %}"
                            aria-current="page"
                            href="{% url 'home' %}">
                             <i class="fa-solid fa-home mx-2"></i>
@@ -98,7 +102,8 @@
                     {# Link to deals page #}
                     <li class="nav-item">
                         <a title="Deals" href="{% url 'deals' %}"
-                           class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/deals' == request.path %} active {% endif %}" aria-current="page">
+                           class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/deals' == request.path %} active {% endif %}"
+                           aria-current="page">
                             <i class="fa-solid fa-tag mx-2"></i>
                             <p>DEALS</p>
                         </a>
@@ -106,9 +111,10 @@
 
                     {# Link to wishlist page #}
                     <li class="nav-item">
-                        <a title="Wish List" class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/wishlist' == request.path %} active {% endif %}"
+                        <a title="Wish List"
+                           class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/wishlist' == request.path %} active {% endif %}"
                            aria-current="page"
-                           href="{% url 'wishlist' 0 %}">
+                           href="">
                             <i class="fa-solid fa-heart mx-2"></i>
                             <p>WISH LIST</p>
                         </a>
@@ -116,28 +122,32 @@
 
                     {# Link to Cart #}
                     <li class="nav-item">
-                        <a title="Cart" class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/cart' == request.path %} active {% endif %}"
+                        <a title="Cart"
+                           class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/cart' == request.path %} active {% endif %}"
                            aria-current="page"
-                           href="{% url 'cart' %}">
+                           href="">
                             <i class="fa-solid fa-cart-shopping mx-2"></i>
                             <p>CART</p>
                         </a>
                     </li>
                     {# Link to settings page #}
-                    <li class="nav-item w-auto">
-                        <a title="Settings" class="nav-link d-flex flex-row justify-content-evenly align-items-baseline {% if '/settings' == request.path %} active {% endif %}"
-                           aria-current="page"
-                           href="{% url 'settings' %}">
-                            <i class="fa-solid fa-tools mx-2"></i>
-                            <p>SETTINGS</p>
-                        </a>
-                    </li>
+
 
                     {# Link to login/logout button #}
                     <li class="nav-item ms-5 w-auto">
-                        <a title="Logout" class="nav-link" href="#" role="button">
-                            <i class="fa-solid fa-power-off mx-2"></i>
-                        </a>
+                        {% if customer %}
+                           <a title="Logout" class="nav-link" href="{% url 'signout' %}" role="button">
+                                <i class="fa-solid fa-power-off mx-2"></i>
+                            </a>
+                            <a href="{% url 'customer_home' customer.id %}"> {{ customer.first_name }}</a>
+                        {% else %}
+
+                             <a title="Login" class="nav-link" href="{% url 'signin' %}" role="button">
+                                <i class="fa-solid fa-right-to-bracket mx-2"></i>
+                                Login
+                            </a>
+                        {% endif %}
+
                     </li>
 
                 </ul>
@@ -217,12 +227,12 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenulink">
                         <li class="">
-                            <a href="" class="btn dropdown-item">
+                            <a href="{% url 'low_to_high' %}" class="btn dropdown-item">
                                 Low to High
                             </a>
                         </li>
                         <li class="">
-                            <a href="" class="btn dropdown-item">
+                            <a href="{% url 'high_to_low' %}" class="btn dropdown-item">
                                 High to Low
                             </a>
                         </li>

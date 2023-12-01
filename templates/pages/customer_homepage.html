@@ -9,7 +9,7 @@
     {% include 'partials/navbar.html' %}
     {% include 'partials/alert.html' %}
     <!-- Profile Card -->
-    <div class="container card d-flex flex-row justify-content-center  bg-white shadow-lg mx-auto my-5 w-auto p-3">
+    <div class="container card d-flex flex-row justify-content-center  bg-white shadow-lg mx-auto my-5 w-auto p-3" style="max-width: 600px">
         {# Customer image #}
         <div class="card-img h-auto w-auto">
 
@@ -80,7 +80,7 @@
             {# Orders Data #}
             <div class="tab-pane fade p-2" id="nav-orders-tab" role="tabpanel" aria-labelledby="nav-orders-tab">
 
-            {% if orders %}
+                {% if orders %}
                     {% for order in orders %}
                         <div class="">
                             Order ID
@@ -90,17 +90,17 @@
                             Delivery
                         </div>
                     {% endfor %}
-            {% else %}
-                <div class="d-flex flex-row justify-content-center w-100">
-                    <a href="{% url 'all_candy' %}" class="text-decoration-none">
-                        <p class="w-100 text-center">
-                            Shop and make your first order!
-                        </p>
-                    </a>
-                </div>
+                {% else %}
+                    <div class="d-flex flex-row justify-content-center w-100">
+                        <a href="{% url 'all_candy' %}" class="text-decoration-none">
+                            <p class="w-100 text-center">
+                                Shop and make your first order!
+                            </p>
+                        </a>
+                    </div>
 
 
-            {% endif %}
+                {% endif %}
             </div>
             {# Wish List Data #}
             <div class="tab-pane fade p-2" id="nav-wishlist-tab" role="tabpanel" aria-labelledby="nav-wishlist-tab">
@@ -115,23 +115,34 @@
                             Delivery
                         </div>
                     {% endfor %}
-            {% else %}
-                <div class="d-flex flex-row justify-content-center w-100">
-                    <a href="{% url 'all_candy' %}" class="text-decoration-none">
+                {% else %}
+                    <div class="d-flex flex-column justify-content-center w-100">
                         <p class="w-100 text-center">No items in your wishlist!</p>
-                        <a href="{% url 'all_candy' %}" class="text-decoration-none">Add Now</a>
-                    </a>
-                </div>
+                        <a href="{% url 'all_candy' %}" class="text-decoration-none text-center">
+                            Add Now
+                        </a>
+                    </div>
 
 
-            {% endif %}
+                {% endif %}
             </div>
             {# Settings data #}
             <div class="tab-pane fade p-2" id="nav-settings-tab" role="tabpanel" aria-labelledby="nav-settings-tab">
-                Settings
-                Personal Information
-                Account
-                Subscriptions
+                Edit Settings
+                <ul>
+                    <li>
+                        <a class="text-decoration-none" href="{% url 'customer_settings' customer.id %}">
+                            Personal Information
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-decoration-none" href="{% url 'customer_settings' customer.id %}">
+                            Subscriptions
+                        </a>
+                    </li>
+                </ul>
+
+
             </div>
         </div>
     </div>

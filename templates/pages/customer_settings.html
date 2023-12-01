@@ -1,0 +1,60 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    My Settings
+{% endblock %}
+
+{% block content %}
+    {% include 'partials/navbar.html' %}
+
+    {% include 'partials/alert.html' %}
+    <style>
+        .button {
+            background-color: #950952;
+            color: white;
+        }
+    </style>
+    <section class="w-100 h-100">
+        {# Change personal information #}
+        <section class="p-5">
+
+
+            {# Personal information section #}
+            <fieldset id="personal-data" class="my-2">
+                <div class="text-center w-auto mx-auto my-3 p-5">
+                    <h3>Personal Information</h3>
+                    <p>Edit your personal information here</p>
+                    {{ customer.id }}
+                </div>
+                <div class="w-75 p-3 mx-auto bg-white shadow-lg">
+                    <form action="{% url 'update_customer' customer.id %}" method="POST">
+                        {% csrf_token %}
+                        {{ signup_form | crispy }}
+                        <div class="w-100 my-2 d-flex flex-row justify-content-center">
+                            <button class="btn button">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+
+           <fieldset id="account-data" class="my-5">
+                <div class="text-center w-auto mx-auto p-5 mb-3 mb-0">
+                    <h3>Delete Account</h3>
+                    <p>Delete your account here.</p>
+                </div>
+                <div class="w-75 p-3 mx-auto bg-white shadow-lg mt-0">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ subscribe_form | crispy }}
+                        <div class="w-100 my-2 d-flex flex-row justify-content-center">
+                            <button class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </section>
+
+        {% include 'partials/footer.html' %}
+    </section>
+{% endblock %}

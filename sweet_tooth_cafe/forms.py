@@ -1,6 +1,12 @@
 from django import forms
 
-from sweet_tooth_cafe.models import Customer
+from sweet_tooth_cafe.models import Customer, Address
+
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = '__all__'
 
 
 class CustomerForm(forms.ModelForm):
@@ -43,3 +49,7 @@ class SignupForm(forms.ModelForm):
 
         }
     confirm_password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+
+
+class SubscribeForm(forms.Form):
+    email = forms.EmailField(max_length=50)
